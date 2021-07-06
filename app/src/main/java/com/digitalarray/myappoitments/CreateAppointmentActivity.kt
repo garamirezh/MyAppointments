@@ -1,5 +1,6 @@
 package com.digitalarray.myappoitments
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,8 +24,14 @@ class CreateAppointmentActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnNext.setOnClickListener {
-            binding.cvStep1.visibility = View.GONE
-            binding.cvStep2.visibility = View.VISIBLE
+            if(binding.etDescription.text.toString().length < 3) {
+                binding.etDescription.error = getString(R.string.validate_appointment_description)
+            }else{
+                //continue Step 2
+                binding.cvStep1.visibility = View.GONE
+                binding.cvStep2.visibility = View.VISIBLE
+            }
+
         }
 
         binding.btnConfirmAppointment.setOnClickListener {
@@ -110,4 +117,22 @@ class CreateAppointmentActivity : AppCompatActivity() {
 
     private fun Int.twoDigits() = if(this>=10) this.toString() else "0$this"
 
+    override fun onBackPressed() {
+        if(binding.cvStep2.visibility == View.VISIBLE){
+            binding.cvStep1.visibility == View.GONE
+            binding.cvStep1.visibility = View.VISIBLE
+        }else if(binding.cvStep1.visibility == View.VISIBLE){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.dialog_create_appointment_exit_title))
+            builder.setMessage(getString(R.string.dialog_create_appointment_exit_message))
+            builder.setPositiveButton(getString(R.string.dialog_create_appointment_exit_positive_btn)) { _, _ ->
+                finish()
+            }
+            builder.setNegativeButton(getString(R.string.dialog_create_appointment_exit_negative_btn)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+        }
+    }
 }
