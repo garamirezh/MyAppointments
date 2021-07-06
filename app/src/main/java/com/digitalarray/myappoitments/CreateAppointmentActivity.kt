@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import com.digitalarray.myappoitments.databinding.ActivityCreateAppointmentBinding
 import java.util.*
@@ -44,7 +43,7 @@ class CreateAppointmentActivity : AppCompatActivity() {
     }
 
 
-    fun onClickScheduleDate(view: View) {
+    fun onClickScheduleDate() {
         val year = selectedCalendar.get(Calendar.YEAR)
         val month = selectedCalendar.get(Calendar.MONTH)
         val dayOfMonth = selectedCalendar.get(Calendar.DAY_OF_MONTH)
