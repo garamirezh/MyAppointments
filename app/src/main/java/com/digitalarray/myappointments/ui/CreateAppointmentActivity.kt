@@ -1,4 +1,4 @@
-package com.digitalarray.myappoitments.ui
+package com.digitalarray.myappointments.ui
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -8,8 +8,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
-import com.digitalarray.myappoitments.R
-import com.digitalarray.myappoitments.databinding.ActivityCreateAppointmentBinding
+import com.digitalarray.myappointments.R
+import com.digitalarray.myappointments.databinding.ActivityCreateAppointmentBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 

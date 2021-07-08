@@ -1,10 +1,10 @@
-package com.digitalarray.myappoitments.ui
+package com.digitalarray.myappointments.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.digitalarray.myappoitments.databinding.ActivityAppointmentsBinding
-import com.digitalarray.myappoitments.model.Appointment
+import com.digitalarray.myappointments.databinding.ActivityAppointmentsBinding
+import com.digitalarray.myappointments.model.Appointment
 
 class AppointmentsActivity : AppCompatActivity() {
 

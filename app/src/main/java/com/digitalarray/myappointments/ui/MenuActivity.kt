@@ -1,11 +1,11 @@
-package com.digitalarray.myappoitments.ui
+package com.digitalarray.myappointments.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.digitalarray.myappoitments.PreferenceHelper
-import com.digitalarray.myappoitments.databinding.ActivityMenuBinding
-import com.digitalarray.myappoitments.PreferenceHelper.set
+import com.digitalarray.myappointments.PreferenceHelper
+import com.digitalarray.myappointments.databinding.ActivityMenuBinding
+import com.digitalarray.myappointments.PreferenceHelper.set
 
 class MenuActivity : AppCompatActivity() {
 

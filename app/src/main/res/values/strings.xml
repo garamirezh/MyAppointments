@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Appoitments</string>
+    <string name="app_name">My Appointments</string>
     <string name="label_login">Inicio de Sesion</string>
     <string name="label_email">Correo</string>
     <string name="label_pass">Contraseña</string>

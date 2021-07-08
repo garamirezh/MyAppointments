@@ -1,12 +1,12 @@
-package com.digitalarray.myappoitments.ui
+package com.digitalarray.myappointments.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.digitalarray.myappoitments.R
-import com.digitalarray.myappoitments.model.Appointment
+import com.digitalarray.myappointments.R
+import com.digitalarray.myappointments.model.Appointment
 
 class AppointmentAdapter(private val appointments: ArrayList<Appointment> ): RecyclerView.Adapter<AppointmentAdapter.ViewHolder>() {
 

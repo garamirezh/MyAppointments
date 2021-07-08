@@ -1,6 +1,6 @@
-package com.digitalarray.myappoitments.io
+package com.digitalarray.myappointments.io
 
-import com.digitalarray.myappoitments.model.Specialty
+import com.digitalarray.myappointments.model.Specialty
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

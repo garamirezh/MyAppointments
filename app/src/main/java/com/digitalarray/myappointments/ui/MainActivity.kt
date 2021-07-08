@@ -1,14 +1,14 @@
-package com.digitalarray.myappoitments.ui
+package com.digitalarray.myappointments.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.digitalarray.myappoitments.PreferenceHelper
-import com.digitalarray.myappoitments.databinding.ActivityMainBinding
-import com.digitalarray.myappoitments.PreferenceHelper.get
-import com.digitalarray.myappoitments.PreferenceHelper.set
-import com.digitalarray.myappoitments.R
+import com.digitalarray.myappointments.PreferenceHelper
+import com.digitalarray.myappointments.databinding.ActivityMainBinding
+import com.digitalarray.myappointments.PreferenceHelper.get
+import com.digitalarray.myappointments.PreferenceHelper.set
+import com.digitalarray.myappointments.R
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
