@@ -1,4 +1,4 @@
-package com.digitalarray.myappoitments
+package com.digitalarray.myappoitments.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

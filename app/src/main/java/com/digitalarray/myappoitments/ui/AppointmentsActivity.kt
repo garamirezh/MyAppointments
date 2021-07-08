@@ -1,4 +1,4 @@
-package com.digitalarray.myappoitments
+package com.digitalarray.myappoitments.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +28,6 @@ class AppointmentsActivity : AppCompatActivity() {
         )
 
         binding.rvAppointments.layoutManager = LinearLayoutManager(this)
-        binding.rvAppointments.adapter =AppointmentAdapter(appointments)
+        binding.rvAppointments.adapter = AppointmentAdapter(appointments)
     }
 }

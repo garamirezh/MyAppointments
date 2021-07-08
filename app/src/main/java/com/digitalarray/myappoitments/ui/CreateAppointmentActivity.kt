@@ -1,4 +1,4 @@
-package com.digitalarray.myappoitments
+package com.digitalarray.myappoitments.ui
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
+import com.digitalarray.myappoitments.R
 import com.digitalarray.myappoitments.databinding.ActivityCreateAppointmentBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -41,7 +42,8 @@ class CreateAppointmentActivity : AppCompatActivity() {
                     binding.etScheduledDate.error = getString(R.string.validate_appointment_date)
                 }
                 selectedTimeRadioBtn == null -> {
-                    Snackbar.make(binding.createAppointmentLinearLayout, R.string.validate_appointment_time,Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(binding.createAppointmentLinearLayout,
+                        R.string.validate_appointment_time,Snackbar.LENGTH_LONG).show()
                 }
                 else -> {
                     //continue Step 3

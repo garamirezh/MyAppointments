@@ -1,8 +1,9 @@
-package com.digitalarray.myappoitments
+package com.digitalarray.myappoitments.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.digitalarray.myappoitments.PreferenceHelper
 import com.digitalarray.myappoitments.databinding.ActivityMenuBinding
 import com.digitalarray.myappoitments.PreferenceHelper.set
 
