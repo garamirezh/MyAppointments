@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_gradient"
     android:orientation="vertical"
     android:padding="16dp"
@@ -53,5 +54,13 @@
         android:paddingRight="90dp"
         android:text="@string/btn_log_out"
         android:textColor="@color/white" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/bannerMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

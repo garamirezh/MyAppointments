@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalarray.myappointments.databinding.ActivityAppointmentsBinding
 import com.digitalarray.myappointments.model.Appointment
+import com.google.android.gms.ads.AdRequest
 
 class AppointmentsActivity : AppCompatActivity() {
 
@@ -29,5 +30,11 @@ class AppointmentsActivity : AppCompatActivity() {
 
         binding.rvAppointments.layoutManager = LinearLayoutManager(this)
         binding.rvAppointments.adapter = AppointmentAdapter(appointments)
+        initLoadAds()
+    }
+
+    private fun initLoadAds() {
+        val adRequest: AdRequest = AdRequest.Builder().build()
+        binding.bannerMyAppointments.loadAd(adRequest)
     }
 }

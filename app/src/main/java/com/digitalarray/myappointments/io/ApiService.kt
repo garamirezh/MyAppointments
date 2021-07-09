@@ -12,7 +12,7 @@ interface ApiService {
     abstract fun getSpecialties(): Call<ArrayList<Specialty>>
 
     companion object Factory {
-        private const val  BASE_URL = "https://google.com/"
+        private const val  BASE_URL = "https://appointments.digitalarray.com.co/api/"
 
         fun create(): ApiService{
             val retrofit = Retrofit.Builder()

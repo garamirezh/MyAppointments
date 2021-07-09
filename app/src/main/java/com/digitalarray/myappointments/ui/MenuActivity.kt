@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.digitalarray.myappointments.PreferenceHelper
 import com.digitalarray.myappointments.databinding.ActivityMenuBinding
 import com.digitalarray.myappointments.PreferenceHelper.set
+import com.google.android.gms.ads.AdRequest
 
 class MenuActivity : AppCompatActivity() {
 
@@ -33,6 +34,12 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        initLoadAds()
+    }
+
+    private fun initLoadAds() {
+        val adRequest: AdRequest = AdRequest.Builder().build()
+        binding.bannerMenu.loadAd(adRequest)
     }
 
     private fun clearSessionPreferences() {
@@ -43,4 +50,6 @@ class MenuActivity : AppCompatActivity() {
         val preferences = PreferenceHelper.defaultPrefs(this)
         preferences["session"] = false
     }
+
+
 }
