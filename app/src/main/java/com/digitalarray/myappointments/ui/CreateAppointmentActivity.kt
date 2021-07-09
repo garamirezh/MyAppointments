@@ -5,12 +5,14 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
 import com.digitalarray.myappointments.R
 import com.digitalarray.myappointments.databinding.ActivityCreateAppointmentBinding
 import com.digitalarray.myappointments.io.ApiService
+import com.digitalarray.myappointments.model.Doctor
 import com.digitalarray.myappointments.model.Specialty
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -18,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class CreateAppointmentActivity : AppCompatActivity() {
 
@@ -71,38 +74,74 @@ class CreateAppointmentActivity : AppCompatActivity() {
 
         loadSpecialties()
 
+        listenSpecialtyChanges()
+
         val doctorOptions = arrayOf("Doctor A", "Doctor B", "Doctor C", "Doctor D")
         binding.spinnerDoctors.adapter =
             ArrayAdapter(this, android.R.layout.simple_list_item_1, doctorOptions)
     }
 
     private fun loadSpecialties() {
-
         val call = apiService.getSpecialties()
         call.enqueue(object : Callback<ArrayList<Specialty>>{
-            override fun onResponse(
-                call: Call<ArrayList<Specialty>>,
-                response: Response<ArrayList<Specialty>>
-            ) {
-                if(response.isSuccessful){
-                    val specialties = response.body()
-
-                    val specialityOptions = ArrayList<String>()
-                    specialties?.forEach {
-                        specialityOptions.add(it.name)
-                    }
-                    binding.spinnerSpeciality.adapter =
-                        ArrayAdapter(this@CreateAppointmentActivity, android.R.layout.simple_list_item_1, specialityOptions)
-                }
-            }
-
             override fun onFailure(call: Call<ArrayList<Specialty>>, t: Throwable) {
                 Toast.makeText(this@CreateAppointmentActivity, getString(R.string.error_loading_specialties), Toast.LENGTH_LONG).show()
                 finish()
             }
+            override fun onResponse(call: Call<ArrayList<Specialty>>,response: Response<ArrayList<Specialty>>) {
+                if(response.isSuccessful){
+                    val specialties = response.body()
+                    binding.spinnerSpeciality.adapter = ArrayAdapter(this@CreateAppointmentActivity, android.R.layout.simple_list_item_1, specialties!!)
+                }
+            }
         })
 
 
+    }
+
+    private fun listenSpecialtyChanges() {
+        binding.spinnerSpeciality.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+            override fun onItemSelected(
+                adapter: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val specialty: Specialty = adapter?.getItemAtPosition(position) as Specialty
+                loadDoctors(specialty.id)
+            }
+        }
+    }
+
+    private fun loadDoctors(specialtyId: Int) {
+        val call = apiService.getDoctors(specialtyId)
+        call.enqueue(object : Callback<ArrayList<Doctor>> {
+            override fun onResponse(
+                call: Call<ArrayList<Doctor>>,
+                response: Response<ArrayList<Doctor>>
+            ) {
+                if (response.isSuccessful) {
+                    val doctors = response.body()
+                    binding.spinnerDoctors.adapter = ArrayAdapter(
+                        this@CreateAppointmentActivity,
+                        android.R.layout.simple_list_item_1,
+                        doctors!!
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Doctor>>, t: Throwable) {
+                Toast.makeText(
+                    this@CreateAppointmentActivity,
+                    getString(R.string.error_loading_doctors),
+                    Toast.LENGTH_LONG
+                ).show()
+                finish()
+            }
+        })
     }
 
     private fun showAppointmentDateToConfirm() {
