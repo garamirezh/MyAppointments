@@ -113,6 +113,10 @@ class CreateAppointmentActivity : AppCompatActivity() {
     }
 
     private fun loadHours(doctorId: Int, date: String) {
+        if(date.isEmpty()){
+            return
+        }
+
         val call = apiService.getHours(doctorId, date)
         call.enqueue(object : Callback<Schedule>{
             override fun onFailure(call: Call<Schedule>, t: Throwable) {
@@ -121,7 +125,19 @@ class CreateAppointmentActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Schedule>, response: Response<Schedule>) {
                 if(response.isSuccessful){
                     val schedule = response.body()
-                    Toast.makeText(this@CreateAppointmentActivity, "morning: ${schedule?.morning?.size}, afternoon: ${schedule?.afternoon?.size}", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this@CreateAppointmentActivity, "morning: ${schedule?.morning?.size}, afternoon: ${schedule?.afternoon?.size}", Toast.LENGTH_LONG).show()
+                    //val hours = arrayOf("8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM")
+                    schedule?.let {
+                        binding.tvSelectDoctorAndDate.visibility = View.GONE
+
+                        val intervals = it.morning + it.afternoon
+                        val hours = ArrayList<String>()
+                        intervals.forEach{interval ->
+                            hours.add(interval.start)
+                        }
+                        displayIntervalRadios(hours)
+                    }
+
                 }
             }
         })
@@ -224,7 +240,6 @@ class CreateAppointmentActivity : AppCompatActivity() {
                 )
             )
             binding.etScheduledDate.error = null
-            displayRadioButtons()
         }
 
         //new dialog
@@ -243,13 +258,19 @@ class CreateAppointmentActivity : AppCompatActivity() {
 
     }
 
-    private fun displayRadioButtons() {
+    private fun displayIntervalRadios(hours: ArrayList<String>) {
 
         selectedTimeRadioBtn = null
         binding.radioGroupLeft.removeAllViews()
         binding.radioGroupRight.removeAllViews()
 
-        val hours = arrayOf("8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM")
+        if(hours.isEmpty()){
+            binding.tvNotAvailableHours.visibility = View.VISIBLE
+            return
+        }
+
+        binding.tvNotAvailableHours.visibility = View.GONE
+
         var goToLeft = true
 
         hours.forEach {

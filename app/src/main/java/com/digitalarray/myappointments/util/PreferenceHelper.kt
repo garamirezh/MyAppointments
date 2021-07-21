@@ -1,4 +1,4 @@
-package com.digitalarray.myappointments
+package com.digitalarray.myappointments.util
 
 import android.content.Context
 import android.content.SharedPreferences
